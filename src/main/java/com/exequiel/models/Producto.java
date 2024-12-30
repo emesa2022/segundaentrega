@@ -10,10 +10,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 
 @Entity
@@ -33,12 +33,12 @@ public class Producto {
 	private LocalDateTime createdAt;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(	
-				name ="Categoria_Producto", 
-				joinColumns = @JoinColumn(name ="categoria_id"),
-				inverseJoinColumns = @JoinColumn(name = "producto_id")
-				)
-	private List<Categoria> Categorias = new ArrayList<>();
+    @JoinTable(   
+        name ="producto_categoria", 
+        joinColumns = @JoinColumn(name ="producto_id"),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id")
+    )
+    private List<Categoria> categorias = new ArrayList<>();
 	
 	
 	public Producto() {

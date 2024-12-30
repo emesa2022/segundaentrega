@@ -8,8 +8,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -23,13 +21,8 @@ public class Categoria {
 	
 	private String nombre;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(	
-				name ="Producto_Categoria", 
-				joinColumns = @JoinColumn(name ="producto_id"),
-				inverseJoinColumns = @JoinColumn(name = "categoria_id")
-				)
-	private List<Producto> Productos = new ArrayList<>();
+	@ManyToMany(mappedBy = "categorias", fetch = FetchType.EAGER)
+    private List<Producto> productos = new ArrayList<>();
 	
 	
 	
